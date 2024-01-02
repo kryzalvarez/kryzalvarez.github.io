@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiservicios</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgb(255, 255, 255); /* Reemplaza con la ruta correcta de tu imagen de fondo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: black; /* Texto en negro */
+        }
+
+        #main-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        .image-buttons-container {
+            display: flex; /* Hace que los botones se coloquen horizontalmente */
+            justify-content: center; /* Centra los botones horizontalmente */
+            align-items: center; /* Centra los botones verticalmente */
+        }
+
+        .image-button {
+            margin: 10px;
+            overflow: hidden;
+            width: 100px; /* Ajusta el tamaño según tus necesidades */
+            height: 100px; /* Ajusta el tamaño según tus necesidades */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .image-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: left;
+        }
+
+        .popup-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .popup-image img {
+            max-width: 150px; /* Ajusta el tamaño máximo de la imagen en el pop-up */
+            max-height: 150px; /* Ajusta el tamaño máximo de la imagen en el pop-up */
+            object-fit: cover;
+        }
+
+        .popup-text {
+            margin-left: 20px;
+        }
+
+        .popup-buttons {
+            margin-top: 10px;
+        }
+
+        .popup-price {
+            font-weight: bold;
+            color: rgb(12, 143, 25);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-text">COMPRA TUS PRODUCTOS AQUÍ</div>
+
+    <div class="image-buttons-container">
+        <a href="#" class="image-button" onclick="showPopup('images/cepillo dental.jpeg', 'Producto 1', '$20')">
+            <img src="images/cepillo dental.jpeg" alt="Producto 1">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/cortaunas.jpeg', 'Producto 2', '$15')">
+            <img src="images/cortaunas.jpeg" alt="Producto 2">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/crema corporal.jpeg', 'Producto 3', '$25')">
+            <img src="images/crema corporal.jpeg" alt="Producto 3">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/gel.jpeg', 'Producto 4', '$18')">
+            <img src="images/gel.jpeg" alt="Producto 4">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/jabon.jpeg', 'Producto 5', '$12')">
+            <img src="images/jabon.jpeg" alt="Producto 5">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/pasta dental.jpeg', 'Producto 6', '$22')">
+            <img src="images/pasta dental.jpeg" alt="Producto 6">
+        </a>
+    </div>
+
+    <a href="pagina_de_compra.html" onclick="cambiarPagina(event)"></a>
+
+    <div id="popup" class="popup">
+        <div class="popup-content" id="popup-content">
+            <img id="popup-image" src="" alt="Popup Image" class="popup-image">
+            <div class="popup-text">
+                <p>Seguro que quieres comprar el producto?</p>
+                <p class="popup-price" id="popup-price"></p>
+                <div class="popup-buttons">
+                    <button onclick="redirectToProductPage()">Aceptar</button>
+                    <button onclick="closePopup()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(imageSrc, productText, productPrice) {
+            document.getElementById('popup-image').src = imageSrc;
+            document.getElementById('popup-price').innerText = 'Precio: ' + productPrice;
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function cambiarPagina(event) {
+            event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+            var nuevaPagina = event.target.href;
+            window.location.href = nuevaPagina;
+        }
+
+        function redirectToProductPage() {
+            // Aquí puedes realizar acciones adicionales antes de redirigir
+            window.location.href = 'pagina_de_compra.html';
+        }
+    </script>
+</body>
+
+</html>

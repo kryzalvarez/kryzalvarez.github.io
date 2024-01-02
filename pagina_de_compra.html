@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Compra</title>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #popup-content {
+            text-align: center;
+            color: black;
+            max-width: 80%;
+        }
+
+        #popup-cancelado {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        #popup-content-cancelado {
+            text-align: center;
+            color: black;
+            max-width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Realiza tu compra</h1>
+    <button id="aceptarBtn">Aceptar</button>
+    <button id="cancelarBtn">Cancelar</button>
+
+    <!-- Pop-up de procesamiento -->
+    <div id="popup">
+        <div id="popup-content">
+            <img src="images/cargando2.gif" alt="Procesando">
+            <p>Procesando...</p>
+        </div>
+    </div>
+
+    <!-- Pop-up de cancelación -->
+    <div id="popup-cancelado">
+        <div id="popup-content-cancelado">
+            <img src="images/Rechazado.jpg" alt="Compra Cancelada" style="width: 200px;">
+            <p>Compra Cancelada</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.0.0/mqtt.min.js"></script>
+    <script>
+        document.getElementById("aceptarBtn").addEventListener("click", function () {
+            // Muestra el pop-up de procesamiento
+            mostrarProcesando();
+
+            // Simula la realización de la compra
+            setTimeout(function () {
+                // Oculta el pop-up después de 5 segundos
+                ocultarProcesando();
+                
+                // Redirige a la página de confirmación de compra
+                window.location.href = 'confirmacion.html'; // Reemplaza con la URL correcta
+            }, 5000);
+        });
+
+        document.getElementById("cancelarBtn").addEventListener("click", function () {
+            // Muestra el pop-up de cancelación
+            mostrarCancelado();
+
+            // Espera 5 segundos antes de redirigir
+            setTimeout(function () {
+                ocultarCancelado();
+                // Redirige a la página de inicio (index.html)
+                window.location.href = 'index.html'; // Reemplaza con la URL correcta
+            }, 5000);
+        });
+
+        function mostrarProcesando() {
+            // Muestra el pop-up de procesamiento
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function mostrarCancelado() {
+            // Muestra el pop-up de cancelación
+            document.getElementById("popup-cancelado").style.display = "flex";
+        }
+
+        function ocultarProcesando() {
+            // Oculta el pop-up de procesamiento
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function ocultarCancelado() {
+            // Oculta el pop-up de cancelación
+            document.getElementById("popup-cancelado").style.display = "none";
+        }
+    </script>
+</body>
+</html>

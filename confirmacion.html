@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPRA ACEPTADA</title>
+    <style>
+        /* Estilos CSS para el pop-up modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            margin: 10% auto;
+            padding: 20px;
+            background-color: #fff;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>COMPRA ACEPTADA</h1>
+
+    <!-- Pop-up modal -->
+    <div id="imagenModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="ocultarPopup()">&times;</span>
+            <img src="images/Gracias.png" alt="Imagen de Compra Aceptada" style="width:100%">
+        </div>
+    </div>
+
+    <script>
+        // Funciones para mostrar y ocultar el pop-up
+        function mostrarPopup() {
+            document.getElementById('imagenModal').style.display = 'block';
+
+            // Espera 5 segundos antes de redirigir
+            setTimeout(function() {
+                ocultarPopup();
+                // Redirige a la página de inicio (index.html)
+                window.location.href = 'index.html';
+            }, 5000);
+        }
+
+        function ocultarPopup() {
+            document.getElementById('imagenModal').style.display = 'none';
+        }
+
+        // Llama a la función mostrarPopup automáticamente al cargar la página
+        window.onload = function() {
+            mostrarPopup();
+        };
+    </script>
+</body>
+</html>
