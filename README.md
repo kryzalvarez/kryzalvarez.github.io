@@ -1,1 +1,0 @@
-# kryzalvarez.github.io
