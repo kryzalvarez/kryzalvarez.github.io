@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiservicios</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: black;
+            font-family: 'Public Sans', sans-serif;
+        }
+
+        #main-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        .image-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-button {
+            margin: 10px;
+            overflow: hidden;
+            width: 120px;
+            height: 120px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .image-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .image-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .image-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-button:hover::before {
+            opacity: 1;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #3498db;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: left;
+            border-radius: 10px;
+        }
+
+        .popup-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .popup-image img {
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .popup-text {
+            margin-left: 20px;
+        }
+
+        .popup-buttons {
+            margin-top: 10px;
+        }
+
+        .popup-price {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .popup-buttons button {
+            width: 100px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-buttons button:hover {
+            background-color: #297dbb;
+        }
+
+        /* Botón de Inicio */
+        #inicio-button {
+            margin-top: auto;
+            margin-bottom: 20px;
+            overflow: hidden;
+            width: 120px;
+            height: 50px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+        }
+
+        #inicio-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background-color: #297dbb;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-text">COMPRA TUS PRODUCTOS AQUÍ</div>
+
+    <div class="image-buttons-container">
+        <!-- Botones de Productos -->
+        <a href="#" class="image-button" onclick="showPopup('images/cepillo dental.jpeg', 'Producto 1', '$20')">
+            <img src="images/cepillo dental.jpeg" alt="Producto 1">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/cortaunas.jpeg', 'Producto 2', '$15')">
+            <img src="images/cortaunas.jpeg" alt="Producto 2">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/crema corporal.jpeg', 'Producto 3', '$25')">
+            <img src="images/crema corporal.jpeg" alt="Producto 3">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/gel.jpeg', 'Producto 4', '$18')">
+            <img src="images/gel.jpeg" alt="Producto 4">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/jabon.jpeg', 'Producto 5', '$12')">
+            <img src="images/jabon.jpeg" alt="Producto 5">
+        </a>
+        <a href="#" class="image-button" onclick="showPopup('images/pasta dental.jpeg', 'Producto 6', '$22')">
+            <img src="images/pasta dental.jpeg" alt="Producto 6">
+        </a>
+    </div>
+
+    <!-- Botón de Inicio -->
+    <a href="index.html" id="inicio-button">Inicio</a>
+
+    <div id="popup" class="popup">
+        <div class="popup-content" id="popup-content">
+            <img id="popup-image" src="" alt="Popup Image" class="popup-image">
+            <div class="popup-text">
+                <p>Seguro que quieres comprar el producto?</p>
+                <p class="popup-price" id="popup-price"></p>
+                <div class="popup-buttons">
+                    <button onclick="redirectToProductPage()">Aceptar</button>
+                    <button onclick="closePopup()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPopup(imageSrc, productText, productPrice) {
+            document.getElementById('popup-image').src = imageSrc;
+            document.getElementById('popup-price').innerText = 'Precio: ' + productPrice;
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function redirectToProductPage() {
+            window.location.href = 'pagina_de_compra.html';
+        }
+    </script>
+</body>
+
+</html>

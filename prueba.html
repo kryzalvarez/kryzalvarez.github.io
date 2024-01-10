@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud HTTP desde una Página Web</title>
+</head>
+<body>
+
+<script>
+    // Datos para la solicitud
+    const requestData = {
+        amount: 100,
+        assigned_user: "usuario@example.com",
+        reference: "89bc679b",
+        message: "cobro-septiembre17"
+    };
+
+    // Opciones para la solicitud
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/vnd.com.payclip.v1+json',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'x-api-key': 'Basic MzRhNzBmM2MtMTNhNS00ZTIxLTljZWQtN2E1OWQzNDJlNDBlOjI4OGYyZThiLTUzNDItNDY0Ny1hMDY5LWEzMGE5MjhlNGQyNg=='
+        },
+        body: JSON.stringify(requestData)
+    };
+
+    // URL de la API
+    const apiUrl = 'https://api-gw.payclip.com/paymentrequest';
+
+    // Realizar la solicitud
+    fetch(apiUrl, requestOptions)
+        .then(response => response.json()) // Parsear la respuesta como JSON
+        .then(data => {
+            // Manejar la respuesta recibida (puedes imprimir en consola o hacer lo que necesites)
+            console.log('Respuesta:', data);
+        })
+        .catch(error => {
+            // Manejar cualquier error que ocurra durante la solicitud
+            console.error('Error:', error);
+        });
+</script>
+
+</body>
+</html>
