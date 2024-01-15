@@ -39,8 +39,8 @@
         .image-button {
             margin: 10px;
             overflow: hidden;
-            width: 120px;
-            height: 120px;
+            width: 140px; /* Ajusta el ancho según tus preferencias */
+            height: 140px; /* Ajusta la altura según tus preferencias */
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -70,11 +70,38 @@
 
         .image-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         .image-button:hover::before {
-            opacity: 1;
+            opacity: 0.7;
+        }
+
+        #inicio-button {
+            margin-top: auto;
+            margin-bottom: 20px;
+            overflow: hidden;
+            width: 120px;
+            height: 50px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+        }
+
+        #inicio-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: #297dbb;
         }
 
         .popup {
@@ -130,34 +157,6 @@
         }
 
         .popup-buttons button:hover {
-            background-color: #297dbb;
-        }
-
-        /* Botón de Inicio */
-        #inicio-button {
-            margin-top: auto;
-            margin-bottom: 20px;
-            overflow: hidden;
-            width: 120px;
-            height: 50px;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
-        }
-
-        #inicio-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             background-color: #297dbb;
         }
     </style>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,9 +31,10 @@
     </style>
     <script src="main.js" defer></script>
 </head>
+
 <body>
     <h1>Realiza tu compra</h1>
-    <button id="aceptarBtn">Aceptar</button>
+    <button id="aceptarBtn" onclick="realizarPago()">Aceptar</button>
     <button id="cancelarBtn">Cancelar</button>
 
     <!-- Pop-up de procesamiento -->
@@ -55,5 +57,46 @@
     <a href="#" id="clipEnlace">
         <img src="https://assets-global.website-files.com/62588b32d8d6105ab7aa9721/63bf568610f3fdf437235192_Preview.svg" alt="Logo Paga con Clip" />
     </a>
+
+    <script>
+        function realizarPago() {
+            // Datos de la solicitud
+            const requestData = {
+                amount: 100,
+                assigned_user: "usuario@example.com",
+                reference: "89bc679b",
+                message: "cobro-septiembre17"
+            };
+
+            // Configuración de la solicitud
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    "Accept": "application/vnd.com.payclip.v1+json",
+                    "Content-Type": "application/json; charset=UTF-8",
+                    "X-Api-Key": "Basic MzRhNzBmM2MtMTNhNS00ZTIxLTljZWQtN2E1OWQzNDJlNDBlOjI4OGYyZThiLTUzNDItNDY0Ny1hMDY5LWEzMGE5MjhlNGQyNg=="
+                },
+                body: JSON.stringify(requestData)
+            };
+
+            // Mostrar pop-up de procesamiento
+            document.getElementById('popup').style.display = 'flex';
+
+            // Realizar la solicitud HTTP POST
+            fetch("https://api-gw.payclip.com/paymentrequest", requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    // Ocultar pop-up de procesamiento y mostrar mensaje de éxito o lo que sea necesario
+                    document.getElementById('popup').style.display = 'none';
+                    console.log("Respuesta exitosa:", data);
+                })
+                .catch(error => {
+                    // Ocultar pop-up de procesamiento y mostrar mensaje de error o lo que sea necesario
+                    document.getElementById('popup').style.display = 'none';
+                    console.error("Error en la solicitud:", error);
+                });
+        }
+    </script>
 </body>
+
 </html>
