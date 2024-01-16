@@ -39,8 +39,8 @@
         .image-button {
             margin: 10px;
             overflow: hidden;
-            width: 140px; /* Ajusta el ancho según tus preferencias */
-            height: 140px; /* Ajusta la altura según tus preferencias */
+            width: 140px;
+            height: 140px;
             border: none;
             border-radius: 10px;
             cursor: pointer;
@@ -159,6 +159,66 @@
         .popup-buttons button:hover {
             background-color: #297dbb;
         }
+
+        .selected-images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .selected-image {
+            margin: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .selected-image img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .quantity {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        #total-price {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #payment-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #payment-buttons button {
+            width: 120px;
+            padding: 10px;
+            margin: 5px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #payment-buttons button:hover {
+            background-color: #297dbb;
+        }
     </style>
 </head>
 
@@ -167,28 +227,28 @@
 
     <div class="image-buttons-container">
         <!-- Botones de Productos -->
-        <a href="#" class="image-button" onclick="showPopup('images/cepillo dental.jpeg', 'Producto 1', '$20')">
-            <img src="images/cepillo dental.jpeg" alt="Producto 1">
-        </a>
-        <a href="#" class="image-button" onclick="showPopup('images/cortaunas.jpeg', 'Producto 2', '$15')">
-            <img src="images/cortaunas.jpeg" alt="Producto 2">
-        </a>
-        <a href="#" class="image-button" onclick="showPopup('images/crema corporal.jpeg', 'Producto 3', '$25')">
-            <img src="images/crema corporal.jpeg" alt="Producto 3">
-        </a>
-        <a href="#" class="image-button" onclick="showPopup('images/gel.jpeg', 'Producto 4', '$18')">
-            <img src="images/gel.jpeg" alt="Producto 4">
-        </a>
-        <a href="#" class="image-button" onclick="showPopup('images/jabon.jpeg', 'Producto 5', '$12')">
-            <img src="images/jabon.jpeg" alt="Producto 5">
-        </a>
-        <a href="#" class="image-button" onclick="showPopup('images/pasta dental.jpeg', 'Producto 6', '$22')">
-            <img src="images/pasta dental.jpeg" alt="Producto 6">
-        </a>
+        <button class="image-button" onclick="toggleProductSelection('Producto 1', 20)">
+            <img src="images/Producto-1.jpeg" alt="Producto 1">
+        </button>
+        <button class="image-button" onclick="toggleProductSelection('Producto 2', 15)">
+            <img src="images/Producto-2.jpeg" alt="Producto 2">
+        </button>
+        <button class="image-button" onclick="toggleProductSelection('Producto 3', 25)">
+            <img src="images/Producto-3.jpeg" alt="Producto 3">
+        </button>
+        <button class="image-button" onclick="toggleProductSelection('Producto 4', 18)">
+            <img src="images/Producto-4.jpeg" alt="Producto 4">
+        </button>
+        <button class="image-button" onclick="toggleProductSelection('Producto 5', 12)">
+            <img src="images/Producto-5.jpeg" alt="Producto 5">
+        </button>
+        <button class="image-button" onclick="toggleProductSelection('Producto 6', 22)">
+            <img src="images/Producto-6.jpeg" alt="Producto 6">
+        </button>
     </div>
 
     <!-- Botón de Inicio -->
-    <a href="index.html" id="inicio-button">Inicio</a>
+    <a href="#" id="inicio-button">Inicio</a>
 
     <div id="popup" class="popup">
         <div class="popup-content" id="popup-content">
@@ -197,14 +257,107 @@
                 <p>Seguro que quieres comprar el producto?</p>
                 <p class="popup-price" id="popup-price"></p>
                 <div class="popup-buttons">
-                    <button onclick="redirectToProductPage()">Aceptar</button>
+                    <button onclick="toggleProductSelection('Producto 1', 20)">Aceptar</button>
                     <button onclick="closePopup()">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Contenedor de Imágenes Seleccionadas -->
+    <div id="selected-images-container" class="selected-images-container"></div>
+
+    <!-- Total y Botones de Pago -->
+    <div id="total-price"></div>
+    <div id="payment-buttons">
+        <button onclick="pay()">Pagar</button>
+        <button onclick="cancelPayment()">Cancelar</button>
+    </div>
+
     <script>
+        let selectedProducts = [];
+
+        function toggleProductSelection(productText, productPrice) {
+            const existingProductIndex = selectedProducts.findIndex(product => product.text === productText);
+
+            if (existingProductIndex !== -1) {
+                // Incrementa la cantidad si ya está seleccionado
+                selectedProducts[existingProductIndex].quantity++;
+            } else {
+                // Agrega el producto a la selección
+                selectedProducts.push({ text: productText, price: productPrice, quantity: 1 });
+            }
+
+            updateSelectedImagesContainer();
+            updateTotalPrice();
+        }
+
+        function updateSelectedImagesContainer() {
+            const container = document.getElementById('selected-images-container');
+            container.innerHTML = '';
+
+            selectedProducts.forEach(product => {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'selected-image';
+                imgContainer.onclick = () => decrementProductSelection(product.text);
+
+                const img = document.createElement('img');
+                img.src = getProductImage(product.text);
+                img.alt = product.text;
+
+                const quantity = document.createElement('div');
+                quantity.className = 'quantity';
+                quantity.innerText = product.quantity;
+
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(quantity);
+                container.appendChild(imgContainer);
+            });
+        }
+
+        function updateTotalPrice() {
+            const totalPriceElement = document.getElementById('total-price');
+            const totalPrice = selectedProducts.reduce((sum, product) => sum + product.price * product.quantity, 0);
+            totalPriceElement.innerText = `Total: $${totalPrice}`;
+        }
+
+        function getProductImage(productText) {
+            return 'images/' + productText.toLowerCase().replace(/\s+/g, '-') + '.jpeg';
+        }
+
+        function decrementProductSelection(productText) {
+            // Decrementa la cantidad del producto en la selección
+            const selectedProductIndex = selectedProducts.findIndex(product => product.text === productText);
+
+            if (selectedProductIndex !== -1) {
+                const selectedProduct = selectedProducts[selectedProductIndex];
+
+                // Decrementa la cantidad, o elimina si la cantidad es 1
+                if (selectedProduct.quantity > 1) {
+                    selectedProduct.quantity--;
+                } else {
+                    selectedProducts.splice(selectedProductIndex, 1);
+                }
+
+                // Actualiza la interfaz
+                updateSelectedImagesContainer();
+                updateTotalPrice();
+            }
+        }
+
+        function pay() {
+            // Agrega la lógica de pago aquí
+            console.log('Realizando el pago...');
+            console.log('Productos seleccionados:', selectedProducts);
+        }
+
+        function cancelPayment() {
+            // Cancela el pago y limpia la selección
+            selectedProducts = [];
+            updateSelectedImagesContainer();
+            updateTotalPrice();
+        }
+
         function showPopup(imageSrc, productText, productPrice) {
             document.getElementById('popup-image').src = imageSrc;
             document.getElementById('popup-price').innerText = 'Precio: ' + productPrice;
@@ -213,10 +366,6 @@
 
         function closePopup() {
             document.getElementById('popup').style.display = 'none';
-        }
-
-        function redirectToProductPage() {
-            window.location.href = 'pagina_de_compra.html';
         }
     </script>
 </body>
