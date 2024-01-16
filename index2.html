@@ -248,7 +248,15 @@
     </div>
 
     <!-- Botón de Inicio -->
-    <a href="#" id="inicio-button">Inicio</a>
+    <!-- Botón de Inicio -->
+<a href="index.html" id="inicio-button">Inicio</a>
+
+<!-- Total y Botones de Pago -->
+<div id="total-price"></div>
+<div id="payment-buttons">
+    <button onclick="window.location.href='pagina_de_compra.html'">Pagar</button>
+    <button onclick="cancelPayment()">Cancelar</button>
+</div>
 
     <div id="popup" class="popup">
         <div class="popup-content" id="popup-content">
@@ -270,8 +278,6 @@
     <!-- Total y Botones de Pago -->
     <div id="total-price"></div>
     <div id="payment-buttons">
-        <button onclick="pay()">Pagar</button>
-        <button onclick="cancelPayment()">Cancelar</button>
     </div>
 
     <script>
