@@ -228,22 +228,22 @@
     <div class="image-buttons-container">
         <!-- Botones de Productos -->
         <button class="image-button" onclick="toggleProductSelection('Producto-1', 20)">
-            <img src="images/Producto-1.jpeg" alt="Producto 1">
+            <img src="images/Producto-1.jpeg" alt="Producto-1">
         </button>
         <button class="image-button" onclick="toggleProductSelection('Producto-2', 15)">
-            <img src="images/Producto-2.jpeg" alt="Producto 2">
+            <img src="images/Producto-2.jpeg" alt="Producto-2">
         </button>
         <button class="image-button" onclick="toggleProductSelection('Producto-3', 25)">
-            <img src="images/Producto-3.jpeg" alt="Producto 3">
+            <img src="images/Producto-3.jpeg" alt="Producto-3">
         </button>
         <button class="image-button" onclick="toggleProductSelection('Producto-4', 18)">
-            <img src="images/Producto-4.jpeg" alt="Producto 4">
+            <img src="images/Producto-4.jpeg" alt="Producto-4">
         </button>
         <button class="image-button" onclick="toggleProductSelection('Producto-5', 12)">
-            <img src="images/Producto-5.jpeg" alt="Producto 5">
+            <img src="images/Producto-5.jpeg" alt="Producto-5">
         </button>
         <button class="image-button" onclick="toggleProductSelection('Producto-6', 22)">
-            <img src="images/Producto-6.jpeg" alt="Producto 6">
+            <img src="images/Producto-6.jpeg" alt="Producto-6">
         </button>
     </div>
 
@@ -328,7 +328,7 @@
         }
 
         function getProductImage(productText) {
-            return 'images/' + productText.toLowerCase().replace(/\s+/g, '_') + '.jpeg';
+            return 'images/' + productText.toLowerCase().replace(/\s+/g, ' ') + '.jpeg';
         }
 
         function decrementProductSelection(productText) {
