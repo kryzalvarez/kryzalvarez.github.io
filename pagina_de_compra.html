@@ -29,12 +29,11 @@
             max-height: 80%;
         }
     </style>
-    <script src="main.js" defer></script>
 </head>
 
 <body>
     <h1>Realiza tu compra</h1>
-    <button id="aceptarBtn" onclick="realizarPago()">Aceptar</button>
+    <button id="aceptarBtn">Aceptar</button>
     <button id="cancelarBtn">Cancelar</button>
 
     <!-- Pop-up de procesamiento -->
@@ -59,8 +58,31 @@
     </a>
 
     <script>
+        document.getElementById('aceptarBtn').addEventListener('click', function() {
+            // Mostrar pop-up de procesamiento
+            mostrarPopUp();
+
+            // Realizar pago después de un breve tiempo (simulado)
+            setTimeout(function() {
+                realizarPago();
+            }, 2000); // Cambia esto al tiempo real que desees
+
+            // Redirigir a la página index después de otro breve tiempo (simulado)
+            setTimeout(function() {
+                ocultarPopUp();
+                window.location.href = 'index.html'; // Cambia esto según tu estructura de carpetas y nombres de archivos
+            }, 4000); // Cambia esto al tiempo real que desees
+        });
+
+        function mostrarPopUp() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function ocultarPopUp() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
         function realizarPago() {
-            // Datos de la solicitud
             const requestData = {
                 amount: 100,
                 assigned_user: "usuario@example.com",
@@ -68,7 +90,6 @@
                 message: "cobro-septiembre17"
             };
 
-            // Configuración de la solicitud
             const requestOptions = {
                 method: "POST",
                 headers: {
@@ -79,21 +100,17 @@
                 body: JSON.stringify(requestData)
             };
 
-            // Mostrar pop-up de procesamiento
-            document.getElementById('popup').style.display = 'flex';
-
-            // Realizar la solicitud HTTP POST
             fetch("https://api-gw.payclip.com/paymentrequest", requestOptions)
                 .then(response => response.json())
                 .then(data => {
-                    // Ocultar pop-up de procesamiento y mostrar mensaje de éxito o lo que sea necesario
-                    document.getElementById('popup').style.display = 'none';
+                    ocultarPopUp();
                     console.log("Respuesta exitosa:", data);
+                    // Aquí puedes realizar acciones adicionales en caso de éxito
                 })
                 .catch(error => {
-                    // Ocultar pop-up de procesamiento y mostrar mensaje de error o lo que sea necesario
-                    document.getElementById('popup').style.display = 'none';
+                    ocultarPopUp();
                     console.error("Error en la solicitud:", error);
+                    // Mostrar un mensaje de error al usuario
                 });
         }
     </script>
