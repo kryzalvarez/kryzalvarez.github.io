@@ -1,110 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-  <!-- Enlace a la fuente desde Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
-
-  <title>Prueba Plantilla</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teclado Virtual</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Public Sans', sans-serif;
-      background: url('images/imagenprin.jpg') no-repeat right bottom fixed;
-      background-size: 50% auto;
-      position: relative;
+      font-family: Arial, sans-serif;
     }
 
-    .text-overlay {
-      position: absolute;
-      bottom: 20px;
-      right: 50px;
-      color: #000;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      animation: fadeInOut 9s infinite;
-      font-size: 25px;
+    .texto-container {
+      margin-bottom: 20px;
     }
 
-    @keyframes fadeInOut {
-      0%, 100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
-
-    .button-container {
+    #teclado {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #e6e1e1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      height: 50vh;
-      padding-left: 10%;
-      margin-right: 0;
-      background-color: rgba(255, 255, 255, 0.8);
+      justify-content: center;
+      align-items: center;
     }
 
-    .custom-button {
-      width: 45%;
-      padding: 40px;
-      margin-bottom: 10px;
-      background-color: #fff;
-      color: #3498db;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
-      text-align: left;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    .linea {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 5px; /* Ajusta el espacio entre las líneas */
     }
 
-    .custom-button:hover {
-      background-color: #3498db;
-      color: #fff;
-    }
-
-    .custom-button:active {
-      transform: scale(0.95);
+    button {
+      padding: 90px; /* Ajusta el tamaño de los botones */
+      font-size: 60px; /* Ajusta el tamaño de la fuente */
+      width: 90px; /* Ajusta el ancho de los botones */
+      margin-right: 5px; /* Ajusta el espacio entre los botones */
     }
   </style>
 </head>
-
 <body>
-  <div id="root"></div>
 
-  <!-- Texto encima de la imagen con animación -->
-  <div class="text-overlay">
-    REALIZA TUS ENVIOS<br> NACIONALES, INTERNACIONALES<br> LOCALES<br> TAMBIÉN PAGA SERVICIOS<br> RECARGAS Y PRODUCTOS
+<div class="texto-container">
+  <textarea id="casilla1" class="texto form-control" rows="4" cols="50" onclick="setCasilla('casilla1')"></textarea>
+</div>
+<div class="texto-container">
+  <textarea id="casilla2" class="texto form-control" rows="4" cols="50" onclick="setCasilla('casilla2')"></textarea>
+</div>
+
+<div id="teclado" class="container">
+  <div class="linea">
+    <button class="btn btn-primary" onclick="agregarCaracter('1')">1</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('2')">2</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('3')">3</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('4')">4</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('5')">5</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('6')">6</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('7')">7</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('8')">8</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('9')">9</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('0')">0</button>
   </div>
-
-  <div class="button-container">
-    <!-- Botones -->
-    <button class="custom-button" onclick="redirectToPage('envioNacional.html')">REALIZA ENVIO NACIONAL</button>
-    <button class="custom-button" onclick="redirectToPage('envioInternacional.html')">REALIZA ENVIO INTERNACIONAL</button>
-    <button class="custom-button" onclick="redirectToPage('envioLocal.html')">REALIZA ENVIO LOCAL</button>
-    <button class="custom-button" onclick="redirectToPage('pagoServicios.html')">REALIZA PAGO DE SERVICIOS</button>
-    <button class="custom-button" onclick="redirectToPage('recargas.html')">REALIZA RECARGAS</button>
-    <button class="custom-button" onclick="redirectToPage('index2.html')">COMPRA TUS PRODUCTOS</button>
+  <div class="linea">
+    <button class="btn btn-primary" onclick="agregarCaracter('Q')">Q</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('W')">W</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('E')">E</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('R')">R</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('T')">T</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Y')">Y</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('U')">U</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('I')">I</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('O')">O</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('P')">P</button>
   </div>
+  <div class="linea">
+    <button class="btn btn-primary" onclick="agregarCaracter('A')">A</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('S')">S</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('D')">D</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('F')">F</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('G')">G</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('H')">H</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('J')">J</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('K')">K</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('L')">L</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Ñ')">Ñ</button>
+  </div>
+  <div class="linea">
+    <button class="btn btn-primary" onclick="agregarCaracter('Z')">Z</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('X')">X</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('C')">C</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('V')">V</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('B')">B</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('N')">N</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('M')">M</button>
+  </div>
+  <div class="linea">
+    <button class="btn btn-primary" onclick="limpiarCasilla()">Limpiar</button>
+    <button class="btn btn-primary" onclick="borrarUltimoCaracter()">Borrar</button>
+    <button class="btn btn-primary" onclick="agregarEspacio()">Espacio</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('.')">.</button>
+    <!-- Puedes agregar más botones según tus necesidades -->
+  </div>
+</div>
 
-  <script>
-    // Función para redirigir a la página especificada
-    function redirectToPage(pageName) {
-      window.location.href = pageName;
+<script>
+  var casillaActual = 'casilla1';
+
+  function setCasilla(casilla) {
+    casillaActual = casilla;
+  }
+
+  function agregarCaracter(caracter) {
+    var textoActual = document.getElementById(casillaActual);
+    if (textoActual) {
+      textoActual.value += caracter;
     }
-  </script>
-</body>
+  }
 
+  function limpiarCasilla() {
+    var textoActual = document.getElementById(casillaActual);
+    if (textoActual) {
+      textoActual.value = '';
+    }
+  }
+
+  function borrarUltimoCaracter() {
+    var textoActual = document.getElementById(casillaActual);
+    if (textoActual) {
+      textoActual.value = textoActual.value.slice(0, -1);
+    }
+  }
+
+  function agregarEspacio() {
+    var textoActual = document.getElementById(casillaActual);
+    if (textoActual) {
+      textoActual.value += ' ';
+    }
+  }
+</script>
+
+</body>
 </html>
