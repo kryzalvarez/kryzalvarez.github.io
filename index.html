@@ -53,11 +53,6 @@
       color: #000; /* Cambia el color del texto */
       font-weight: bold; /* Hace que el texto sea más grueso */
     }
-    .funcionby{
-      background-color: #547ef0;
-      color: #f2f2f2;
-      font-weight: bold;
-    }
 
     .espacio {
       width: 400px; /* Ajusta el ancho del botón de espacio */
@@ -87,41 +82,41 @@
     <button class="btn btn-primary" onclick="agregarCaracter('0')">0</button>
   </div>
   <div class="linea">
-    <button class="btn btn-primary" onclick="agregarCaracter('Q')">Q</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('W')">W</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('E')">E</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('R')">R</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('T')">T</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('Y')">Y</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('U')">U</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('I')">I</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('O')">O</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('P')">P</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Q')" id="btnQ">q</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('W')" id="btnW">w</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('E')" id="btnE">e</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('R')" id="btnR">r</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('T')" id="btnT">t</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Y')" id="btnY">y</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('U')" id="btnU">u</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('I')" id="btnI">i</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('O')" id="btnO">o</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('P')" id="btnP">p</button>
     <button class="btn btn-primary funcion" onclick="borrarUltimoCaracter()">←</button>
   </div>
   <div class="linea">
-    <button class="btn btn-primary" onclick="agregarCaracter('A')">A</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('S')">S</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('D')">D</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('F')">F</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('G')">G</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('H')">H</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('J')">J</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('K')">K</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('L')">L</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('Ñ')">Ñ</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('A')" id="btnA">a</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('S')" id="btnS">s</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('D')" id="btnD">d</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('F')" id="btnF">f</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('G')" id="btnG">g</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('H')" id="btnH">h</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('J')" id="btnJ">j</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('K')" id="btnK">k</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('L')" id="btnL">l</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Ñ')" id="btnÑ">ñ</button>
   </div>
   <div class="linea">
-    <button class="btn btn-primary funcion" onclick="agregarCaracter('@')">@</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('Z')">Z</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('X')">X</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('C')">C</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('V')">V</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('B')">B</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('N')">N</button>
-    <button class="btn btn-primary" onclick="agregarCaracter('M')">M</button>
+    <button class="btn btn-primary funcion" onclick="alternarMayusculas()">Mayús</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('Z')" id="btnZ">z</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('X')" id="btnX">x</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('C')" id="btnC">c</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('V')" id="btnV">v</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('B')" id="btnB">b</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('N')" id="btnN">n</button>
+    <button class="btn btn-primary" onclick="agregarCaracter('M')" id="btnM">m</button>
     <button class="btn btn-primary funcion" onclick="agregarCaracter('.com')">.com</button>
-    <button class="btn btn-primary funcion" onclick="agregarCaracter('-')">—</button>
+    <button class="btn btn-primary funcion" onclick="agregarCaracter('-')">-</button>
     <button class="btn btn-primary funcion" onclick="agregarCaracter('_')">_</button>
   </div>
   <div class="linea">
@@ -134,6 +129,7 @@
 
 <script>
   var casillaActual = 'casilla1';
+  var mayusculasActivadas = false;
 
   function setCasilla(casilla) {
     casillaActual = casilla;
@@ -142,7 +138,7 @@
   function agregarCaracter(caracter) {
     var textoActual = document.getElementById(casillaActual);
     if (textoActual) {
-      textoActual.value += caracter;
+      textoActual.value += mayusculasActivadas ? caracter.toUpperCase() : caracter.toLowerCase();
     }
   }
 
@@ -165,6 +161,23 @@
     if (textoActual) {
       textoActual.value += ' ';
     }
+  }
+
+  function alternarMayusculas() {
+    mayusculasActivadas = !mayusculasActivadas;
+    actualizarTeclado();
+  }
+
+  function actualizarTeclado() {
+    var letras = document.querySelectorAll('.linea button:not(.funcion)');
+    letras.forEach(function(letra) {
+      var texto = letra.innerText;
+      if (mayusculasActivadas) {
+        letra.innerText = texto.toUpperCase();
+      } else {
+        letra.innerText = texto.toLowerCase();
+      }
+    });
   }
 </script>
 
