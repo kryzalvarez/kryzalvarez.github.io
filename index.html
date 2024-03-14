@@ -38,7 +38,7 @@
 
     button {
       padding: 90px; /* Ajusta el tamaño de los botones */
-      font-size: 60px; /* Ajusta el tamaño de la fuente */
+      font-size: 90px; /* Ajusta el tamaño de la fuente */
       width: 90px; /* Ajusta el ancho de los botones */
       margin-right: 5px; /* Ajusta el espacio entre los botones */
       transition: all 0.2s; /* Agrega una transición para cambios de estilo */
@@ -49,13 +49,13 @@
     }
 
     .funcion {
-      background-color: #ffc107; /* Cambia el color de fondo */
+      background-color: #ff6600 ; /* Cambia el color de fondo */
       color: #000; /* Cambia el color del texto */
       font-weight: bold; /* Hace que el texto sea más grueso */
     }
 
     .espacio {
-      width: 150px; /* Ajusta el ancho del botón de espacio */
+      width: 400px; /* Ajusta el ancho del botón de espacio */
     }
   </style>
 </head>
@@ -92,6 +92,7 @@
     <button class="btn btn-primary" onclick="agregarCaracter('I')">I</button>
     <button class="btn btn-primary" onclick="agregarCaracter('O')">O</button>
     <button class="btn btn-primary" onclick="agregarCaracter('P')">P</button>
+    <button class="btn btn-primary funcion" onclick="borrarUltimoCaracter()">←</button>
   </div>
   <div class="linea">
     <button class="btn btn-primary" onclick="agregarCaracter('A')">A</button>
@@ -106,6 +107,7 @@
     <button class="btn btn-primary" onclick="agregarCaracter('Ñ')">Ñ</button>
   </div>
   <div class="linea">
+    <button class="btn btn-primary funcion" onclick="agregarCaracter('@')">@</button>
     <button class="btn btn-primary" onclick="agregarCaracter('Z')">Z</button>
     <button class="btn btn-primary" onclick="agregarCaracter('X')">X</button>
     <button class="btn btn-primary" onclick="agregarCaracter('C')">C</button>
@@ -113,10 +115,12 @@
     <button class="btn btn-primary" onclick="agregarCaracter('B')">B</button>
     <button class="btn btn-primary" onclick="agregarCaracter('N')">N</button>
     <button class="btn btn-primary" onclick="agregarCaracter('M')">M</button>
+    <button class="btn btn-primary funcion" onclick="agregarCaracter('.com')">.com</button>
+    <button class="btn btn-primary funcion" onclick="agregarCaracter('-')">-</button>
+    <button class="btn btn-primary funcion" onclick="agregarCaracter('_')">_</button>
   </div>
   <div class="linea">
     <button class="btn btn-primary funcion" onclick="limpiarCasilla()">Limpiar</button>
-    <button class="btn btn-primary funcion" onclick="borrarUltimoCaracter()">Borrar</button>
     <button class="btn btn-primary espacio" onclick="agregarEspacio()">Espacio</button>
     <button class="btn btn-primary funcion" onclick="agregarCaracter('.')">.</button>
     <!-- Puedes agregar más botones según tus necesidades -->
